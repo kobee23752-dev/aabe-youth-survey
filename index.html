@@ -1,0 +1,832 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>2025 青少年十大關注議題 | 國教行動聯盟青年部</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <style>
+    /* ===== 無印良品風格配色 ===== */
+    :root {
+      --bg-primary: #FAF9F7;      /* 溫暖米白 */
+      --bg-secondary: #F5F3EF;    /* 淺米色 */
+      --bg-card: #FFFFFF;         /* 純白卡片 */
+      --text-primary: #2D2D2D;    /* 深灰文字 */
+      --text-secondary: #6B6B6B;  /* 次要文字 */
+      --text-muted: #999999;      /* 淡灰文字 */
+      --accent: #8B7355;          /* 木質棕 */
+      --accent-light: #C4B098;    /* 淡棕 */
+      --border: #E8E4DE;          /* 邊框色 */
+      --shadow: rgba(0,0,0,0.04); /* 極淡陰影 */
+      
+      /* 議題分類色 - 低飽和度自然色 */
+      --cat-safety: #7BA3A8;      /* 青灰 - 安全 */
+      --cat-health: #9B8AA6;      /* 淡紫 - 健康 */
+      --cat-education: #A8B07A;   /* 橄欖綠 - 教育 */
+      --cat-digital: #8899AA;     /* 藍灰 - 數位 */
+      --cat-society: #C4A87C;     /* 沙棕 - 社會 */
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Noto Sans TC', -apple-system, sans-serif;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      line-height: 1.8;
+      font-weight: 300;
+    }
+    
+    /* ===== Header ===== */
+    header {
+      background: var(--bg-card);
+      border-bottom: 1px solid var(--border);
+      padding: 24px 0;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    
+    .header-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .logo {
+      font-size: 14px;
+      font-weight: 400;
+      color: var(--text-secondary);
+      letter-spacing: 2px;
+    }
+    
+    .logo span {
+      color: var(--accent);
+    }
+    
+    nav a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 13px;
+      margin-left: 32px;
+      letter-spacing: 1px;
+      transition: color 0.2s;
+    }
+    
+    nav a:hover {
+      color: var(--accent);
+    }
+    
+    /* ===== Hero ===== */
+    .hero {
+      background: var(--bg-card);
+      padding: 80px 24px;
+      text-align: center;
+      border-bottom: 1px solid var(--border);
+    }
+    
+    .hero-label {
+      font-size: 12px;
+      color: var(--accent);
+      letter-spacing: 4px;
+      margin-bottom: 16px;
+    }
+    
+    .hero h1 {
+      font-size: 32px;
+      font-weight: 300;
+      margin-bottom: 16px;
+      letter-spacing: 2px;
+    }
+    
+    .hero-subtitle {
+      font-size: 15px;
+      color: var(--text-secondary);
+      margin-bottom: 32px;
+    }
+    
+    .hero-stats {
+      display: flex;
+      justify-content: center;
+      gap: 48px;
+      margin-top: 40px;
+    }
+    
+    .stat {
+      text-align: center;
+    }
+    
+    .stat-number {
+      font-size: 36px;
+      font-weight: 500;
+      color: var(--accent);
+    }
+    
+    .stat-label {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-top: 4px;
+      letter-spacing: 1px;
+    }
+    
+    /* ===== Main Content ===== */
+    main {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 60px 24px;
+    }
+    
+    .section-title {
+      font-size: 13px;
+      color: var(--text-muted);
+      letter-spacing: 3px;
+      margin-bottom: 32px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--border);
+    }
+    
+    /* ===== Issue Cards Grid ===== */
+    .issues-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: 24px;
+    }
+    
+    .issue-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 32px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+    
+    .issue-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px var(--shadow);
+    }
+    
+    .issue-rank {
+      position: absolute;
+      top: 24px;
+      right: 24px;
+      font-size: 48px;
+      font-weight: 100;
+      color: var(--border);
+      line-height: 1;
+    }
+    
+    .issue-category {
+      display: inline-block;
+      font-size: 11px;
+      padding: 4px 12px;
+      border-radius: 2px;
+      margin-bottom: 16px;
+      letter-spacing: 1px;
+    }
+    
+    .issue-card h3 {
+      font-size: 18px;
+      font-weight: 400;
+      margin-bottom: 12px;
+      line-height: 1.5;
+      padding-right: 48px;
+    }
+    
+    .issue-excerpt {
+      font-size: 13px;
+      color: var(--text-secondary);
+      line-height: 1.8;
+      margin-bottom: 20px;
+    }
+    
+    .issue-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 16px;
+      border-top: 1px solid var(--border);
+    }
+    
+    .issue-score {
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+    
+    .issue-score span {
+      color: var(--accent);
+      font-weight: 500;
+    }
+    
+    .read-more {
+      font-size: 12px;
+      color: var(--accent);
+      text-decoration: none;
+      letter-spacing: 1px;
+    }
+    
+    /* Category Colors */
+    .cat-safety { background: var(--cat-safety); color: white; }
+    .cat-health { background: var(--cat-health); color: white; }
+    .cat-education { background: var(--cat-education); color: white; }
+    .cat-digital { background: var(--cat-digital); color: white; }
+    .cat-society { background: var(--cat-society); color: white; }
+    
+    /* ===== Detail Modal ===== */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0,0,0,0.3);
+      z-index: 1000;
+      overflow-y: auto;
+    }
+    
+    .modal-overlay.active {
+      display: block;
+    }
+    
+    .modal {
+      background: var(--bg-card);
+      max-width: 800px;
+      margin: 40px auto;
+      border-radius: 4px;
+      position: relative;
+    }
+    
+    .modal-header {
+      padding: 40px 48px;
+      border-bottom: 1px solid var(--border);
+    }
+    
+    .modal-close {
+      position: absolute;
+      top: 24px;
+      right: 24px;
+      background: none;
+      border: none;
+      font-size: 24px;
+      color: var(--text-muted);
+      cursor: pointer;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .modal-close:hover {
+      color: var(--text-primary);
+    }
+    
+    .modal-rank {
+      font-size: 11px;
+      color: var(--accent);
+      letter-spacing: 2px;
+      margin-bottom: 8px;
+    }
+    
+    .modal-title {
+      font-size: 24px;
+      font-weight: 400;
+      margin-bottom: 16px;
+    }
+    
+    .modal-body {
+      padding: 40px 48px;
+    }
+    
+    .modal-section {
+      margin-bottom: 40px;
+    }
+    
+    .modal-section h4 {
+      font-size: 13px;
+      color: var(--text-muted);
+      letter-spacing: 2px;
+      margin-bottom: 16px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--border);
+    }
+    
+    .modal-section p {
+      font-size: 14px;
+      color: var(--text-secondary);
+      margin-bottom: 12px;
+    }
+    
+    .modal-section ul {
+      list-style: none;
+      padding: 0;
+    }
+    
+    .modal-section li {
+      font-size: 14px;
+      color: var(--text-secondary);
+      padding: 8px 0;
+      padding-left: 20px;
+      position: relative;
+    }
+    
+    .modal-section li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 16px;
+      width: 6px;
+      height: 1px;
+      background: var(--accent);
+    }
+    
+    .data-highlight {
+      background: var(--bg-secondary);
+      padding: 24px;
+      border-radius: 4px;
+      margin: 16px 0;
+    }
+    
+    .data-highlight .number {
+      font-size: 32px;
+      font-weight: 500;
+      color: var(--accent);
+    }
+    
+    .data-highlight .label {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+    
+    .demands-list {
+      background: var(--bg-secondary);
+      padding: 24px;
+      border-radius: 4px;
+    }
+    
+    .demands-list h5 {
+      font-size: 12px;
+      color: var(--accent);
+      letter-spacing: 2px;
+      margin-bottom: 16px;
+    }
+    
+    .modal-footer {
+      padding: 24px 48px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .download-btn {
+      background: var(--accent);
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      font-size: 13px;
+      border-radius: 2px;
+      cursor: pointer;
+      letter-spacing: 1px;
+      transition: background 0.2s;
+    }
+    
+    .download-btn:hover {
+      background: var(--text-primary);
+    }
+    
+    /* ===== Footer ===== */
+    footer {
+      background: var(--bg-card);
+      border-top: 1px solid var(--border);
+      padding: 48px 24px;
+      text-align: center;
+    }
+    
+    .footer-logo {
+      font-size: 14px;
+      color: var(--accent);
+      letter-spacing: 2px;
+      margin-bottom: 16px;
+    }
+    
+    .footer-links {
+      margin-bottom: 24px;
+    }
+    
+    .footer-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 12px;
+      margin: 0 16px;
+      letter-spacing: 1px;
+    }
+    
+    .footer-links a:hover {
+      color: var(--accent);
+    }
+    
+    .copyright {
+      font-size: 11px;
+      color: var(--text-muted);
+      letter-spacing: 1px;
+    }
+    
+    /* ===== Responsive ===== */
+    @media (max-width: 768px) {
+      .header-inner {
+        flex-direction: column;
+        gap: 16px;
+      }
+      
+      nav a {
+        margin: 0 12px;
+      }
+      
+      .hero h1 {
+        font-size: 24px;
+      }
+      
+      .hero-stats {
+        flex-wrap: wrap;
+        gap: 24px;
+      }
+      
+      .issues-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .modal {
+        margin: 0;
+        border-radius: 0;
+        min-height: 100vh;
+      }
+      
+      .modal-header,
+      .modal-body,
+      .modal-footer {
+        padding-left: 24px;
+        padding-right: 24px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <div class="header-inner">
+      <div class="logo">國教行動聯盟 <span>青年部</span></div>
+      <nav>
+        <a href="#issues">十大議題</a>
+        <a href="#about">關於調查</a>
+        <a href="#contact">聯絡我們</a>
+      </nav>
+    </div>
+  </header>
+  
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-label">2025 YOUTH SURVEY</div>
+    <h1>全國青少年最關注的十大議題</h1>
+    <p class="hero-subtitle">8,742 位青少年的聲音，讓我們一起聽見</p>
+    <div class="hero-stats">
+      <div class="stat">
+        <div class="stat-number">8,742</div>
+        <div class="stat-label">有效問卷</div>
+      </div>
+      <div class="stat">
+        <div class="stat-number">25</div>
+        <div class="stat-label">調查題目</div>
+      </div>
+      <div class="stat">
+        <div class="stat-number">22</div>
+        <div class="stat-label">縣市涵蓋</div>
+      </div>
+      <div class="stat">
+        <div class="stat-number">3</div>
+        <div class="stat-label">場記者會</div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Main Content -->
+  <main id="issues">
+    <div class="section-title">十大議題 / TOP 10 ISSUES</div>
+    
+    <div class="issues-grid" id="issuesGrid">
+      <!-- Cards will be injected by JS -->
+    </div>
+  </main>
+  
+  <!-- Modal -->
+  <div class="modal-overlay" id="modalOverlay">
+    <div class="modal">
+      <button class="modal-close" onclick="closeModal()">&times;</button>
+      <div class="modal-header">
+        <div class="modal-rank" id="modalRank"></div>
+        <h2 class="modal-title" id="modalTitle"></h2>
+        <span class="issue-category" id="modalCategory"></span>
+      </div>
+      <div class="modal-body" id="modalBody">
+        <!-- Content injected by JS -->
+      </div>
+      <div class="modal-footer">
+        <span style="font-size: 12px; color: var(--text-muted);">完整報告請參閱白皮書</span>
+        <button class="download-btn" id="downloadBtn">下載完整論述 PDF</button>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Footer -->
+  <footer id="contact">
+    <div class="footer-logo">國教行動聯盟青年部</div>
+    <div class="footer-links">
+      <a href="https://www.facebook.com/naer.tw" target="_blank">Facebook</a>
+      <a href="https://www.instagram.com/naer_youth" target="_blank">Instagram</a>
+      <a href="mailto:naer.youth@gmail.com">Email</a>
+    </div>
+    <p class="copyright">© 2025 National Alliance for Education Reform - Youth Division</p>
+  </footer>
+  
+  <script>
+    // ===== 十大議題資料 =====
+    var issues = [
+      {
+        rank: 1,
+        title: "從小學習如何分辨網路資訊，預防詐騙和不正確的訊息",
+        shortTitle: "網路資訊辨識與詐騙預防",
+        category: "數位素養",
+        catClass: "cat-digital",
+        score: 4.40,
+        excerpt: "台灣連續11年被評為全球受境外假訊息影響最嚴重的國家，青少年詐騙受害人數8年內成長近3倍。",
+        keyData: "2,346人",
+        keyDataLabel: "2024年未滿18歲詐騙受害人數",
+        demands: [
+          "將「媒體識讀」列入課程綱要應融入之議題",
+          "將媒體素養研習納入教師在職進修",
+          "建立跨部會教材資源平台"
+        ],
+        pressDate: "2025/10/20"
+      },
+      {
+        rank: 2,
+        title: "政府加強菸品與藥物使用警告，減少我受到菸品與藥物濫用的傷害",
+        shortTitle: "菸品與藥物使用警告",
+        category: "健康安全",
+        catClass: "cat-health",
+        score: 4.35,
+        excerpt: "電子煙成為毒品滲透新管道，78%藥癮少年同時患有精神疾病，校園與輔導體系卻跟不上變化。",
+        keyData: "38,000+人",
+        keyDataLabel: "2024年青少年毒品嫌疑犯人數",
+        demands: [
+          "全面禁止加味加熱菸及所有加味菸品",
+          "加速通過菸害防制法修法（納入持有載具罰則）",
+          "建立跨部會協作與資訊分級共享機制",
+          "強化心理支持系統預防藥物濫用"
+        ],
+        pressDate: "2025/11/17"
+      },
+      {
+        rank: 3,
+        title: "學習正確的性觀念及如何互相尊重",
+        shortTitle: "正確性觀念與互相尊重教育",
+        category: "健康安全",
+        catClass: "cat-health",
+        score: 4.32,
+        excerpt: "性影像被害人年齡層以13-17歲占比最高（32.9%），未成年受害比例達52.6%。現行每週僅1節健康教育課。",
+        keyData: "52.6%",
+        keyDataLabel: "性侵害案件未成年受害比例",
+        demands: [
+          "優先保障性教育與情感／界線教育時數",
+          "全面更新教材（身體自主、同意文化、數位界線）",
+          "整合出「兒少友善、單一入口」的求助平臺"
+        ],
+        pressDate: "2025/12/08"
+      },
+      {
+        rank: 4,
+        title: "完善校園霸凌防治機制，讓每個人都能在友善環境中學習",
+        shortTitle: "校園霸凌防治",
+        category: "校園安全",
+        catClass: "cat-safety",
+        score: 4.28,
+        excerpt: "2024年校園霸凌通報案件創新高，網路霸凌成為新型態威脅。芬蘭KiVa計畫證實：預防教育比處罰更有效。",
+        keyData: "5,043件",
+        keyDataLabel: "2024年校園性別事件通報案件",
+        demands: [
+          "強化預防教育，導入KiVa等實證課程",
+          "建立完善的網路霸凌通報與處理機制",
+          "增設旁觀者介入訓練課程"
+        ],
+        pressDate: null
+      },
+      {
+        rank: 5,
+        title: "維護校園環境整潔，提供舒適的學習空間",
+        shortTitle: "校園環境整潔",
+        category: "校園環境",
+        catClass: "cat-education",
+        score: 4.25,
+        excerpt: "研究顯示清潔環境可減少46%因病缺課。日本「掃除」文化蘊含責任感、團隊合作等教育意涵。",
+        keyData: "46%",
+        keyDataLabel: "清潔環境可減少的缺課率",
+        demands: [
+          "優化清掃制度，平衡教育意涵與學生負擔",
+          "改善清潔工具與衛生設備",
+          "將環境維護納入生活教育課程"
+        ],
+        pressDate: null
+      },
+      {
+        rank: 6,
+        title: "加強對青少年心理健康的關注與支持",
+        shortTitle: "青少年心理健康",
+        category: "身心健康",
+        catClass: "cat-health",
+        score: 4.22,
+        excerpt: "青少年自殺率10年翻倍，15-24歲自殺為第二大死因。近四成青少年遇心理困擾「不告訴任何人」。",
+        keyData: "11.9人/十萬",
+        keyDataLabel: "15-24歲自殺率（10年前僅5.9）",
+        demands: [
+          "提升輔導人力至國際標準（1:500）",
+          "推動心理健康教育入課綱",
+          "建立青少年友善單一求助入口"
+        ],
+        pressDate: null
+      },
+      {
+        rank: 7,
+        title: "提升數位素養與媒體識讀能力，成為負責任的數位公民",
+        shortTitle: "數位素養與媒體識讀",
+        category: "數位素養",
+        catClass: "cat-digital",
+        score: 4.18,
+        excerpt: "84.6%青少年每日使用社群媒體，13.6%已沉迷。58.4%每週使用生成式AI，但60%從未查證AI資訊。",
+        keyData: "84.6%",
+        keyDataLabel: "每日使用社群媒體的青少年比例",
+        demands: [
+          "將數位公民素養納入正式課程",
+          "新增AI素養教育模組",
+          "強化網路禮儀與數位足跡教育"
+        ],
+        pressDate: null
+      },
+      {
+        rank: 8,
+        title: "促進青少年參與社會與政治事務的機會",
+        shortTitle: "青少年社會參與",
+        category: "公民參與",
+        catClass: "cat-society",
+        score: 4.15,
+        excerpt: "2022年18歲公民權公投未通過，台灣仍為全球少數維持20歲投票年齡的民主國家。青年參與管道有限。",
+        keyData: "501萬",
+        keyDataLabel: "公投同意票數（門檻962萬）",
+        demands: [
+          "落實學生自治，賦予實質參與權",
+          "擴大兒少代表、青年諮詢委員機制",
+          "推動審議式民主教育入課綱"
+        ],
+        pressDate: null
+      },
+      {
+        rank: 9,
+        title: "增加對環境保護的教育與實際行動機會",
+        shortTitle: "環境保護教育",
+        category: "環境永續",
+        catClass: "cat-education",
+        score: 4.12,
+        excerpt: "全球84%青年擔憂氣候變遷、37%感到焦慮。台灣雖有環境教育法，但課程缺乏系統性與行動導向。",
+        keyData: "84%",
+        keyDataLabel: "全球擔憂氣候變遷的青年比例",
+        demands: [
+          "建立系統性氣候變遷教育課程",
+          "推動全國校園碳盤查與減碳行動",
+          "支持青年參與國際氣候會議"
+        ],
+        pressDate: null
+      },
+      {
+        rank: 10,
+        title: "加強對青少年性健康的教育，包含避孕、性病防治等知識",
+        shortTitle: "青少年性健康教育",
+        category: "健康安全",
+        catClass: "cat-health",
+        score: 4.08,
+        excerpt: "15-19歲女性梅毒感染10年暴增53倍，青少年淋病12年增7倍。花蓮縣未成年懷孕率是台北市的11倍。",
+        keyData: "53倍",
+        keyDataLabel: "15-19歲女性梅毒感染10年增幅",
+        demands: [
+          "增加性健康教育時數（國中每學期至少8節）",
+          "更新教材納入完整避孕、性病防治知識",
+          "擴大HPV疫苗至男性青少年"
+        ],
+        pressDate: null
+      }
+    ];
+    
+    // ===== 渲染卡片 =====
+    function renderCards() {
+      var grid = document.getElementById('issuesGrid');
+      var html = '';
+      
+      for (var i = 0; i < issues.length; i++) {
+        var issue = issues[i];
+        html += '<div class="issue-card" onclick="openModal(' + i + ')">';
+        html += '<div class="issue-rank">' + issue.rank + '</div>';
+        html += '<span class="issue-category ' + issue.catClass + '">' + issue.category + '</span>';
+        html += '<h3>' + issue.shortTitle + '</h3>';
+        html += '<p class="issue-excerpt">' + issue.excerpt + '</p>';
+        html += '<div class="issue-meta">';
+        html += '<span class="issue-score">關注度 <span>' + issue.score.toFixed(2) + '</span></span>';
+        html += '<span class="read-more">了解更多 →</span>';
+        html += '</div>';
+        html += '</div>';
+      }
+      
+      grid.innerHTML = html;
+    }
+    
+    // ===== Modal 功能 =====
+    function openModal(index) {
+      var issue = issues[index];
+      var overlay = document.getElementById('modalOverlay');
+      
+      document.getElementById('modalRank').textContent = '第 ' + issue.rank + ' 名';
+      document.getElementById('modalTitle').textContent = issue.title;
+      document.getElementById('modalCategory').textContent = issue.category;
+      document.getElementById('modalCategory').className = 'issue-category ' + issue.catClass;
+      
+      var bodyHtml = '';
+      
+      // 關鍵數據
+      bodyHtml += '<div class="modal-section">';
+      bodyHtml += '<h4>關鍵數據</h4>';
+      bodyHtml += '<div class="data-highlight">';
+      bodyHtml += '<div class="number">' + issue.keyData + '</div>';
+      bodyHtml += '<div class="label">' + issue.keyDataLabel + '</div>';
+      bodyHtml += '</div>';
+      bodyHtml += '</div>';
+      
+      // 問題概述
+      bodyHtml += '<div class="modal-section">';
+      bodyHtml += '<h4>問題概述</h4>';
+      bodyHtml += '<p>' + issue.excerpt + '</p>';
+      bodyHtml += '</div>';
+      
+      // 政策訴求
+      bodyHtml += '<div class="modal-section">';
+      bodyHtml += '<h4>政策訴求</h4>';
+      bodyHtml += '<div class="demands-list">';
+      bodyHtml += '<h5>國教盟青年部主張</h5>';
+      bodyHtml += '<ul>';
+      for (var j = 0; j < issue.demands.length; j++) {
+        bodyHtml += '<li>' + issue.demands[j] + '</li>';
+      }
+      bodyHtml += '</ul>';
+      bodyHtml += '</div>';
+      bodyHtml += '</div>';
+      
+      // 記者會資訊
+      if (issue.pressDate) {
+        bodyHtml += '<div class="modal-section">';
+        bodyHtml += '<h4>相關倡議</h4>';
+        bodyHtml += '<p>📅 記者會日期：' + issue.pressDate + '</p>';
+        bodyHtml += '</div>';
+      }
+      
+      document.getElementById('modalBody').innerHTML = bodyHtml;
+      overlay.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+    
+    function closeModal() {
+      document.getElementById('modalOverlay').classList.remove('active');
+      document.body.style.overflow = '';
+    }
+    
+    // 點擊背景關閉
+    document.getElementById('modalOverlay').addEventListener('click', function(e) {
+      if (e.target === this) closeModal();
+    });
+    
+    // ESC 關閉
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') closeModal();
+    });
+    
+    // 初始化
+    renderCards();
+  </script>
+</body>
+</html>
