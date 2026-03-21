@@ -7,117 +7,166 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
   <style>
-    /* ===== 無印良品風格配色 ===== */
     :root {
-      --bg-primary: #FAF9F7;      /* 溫暖米白 */
-      --bg-secondary: #F5F3EF;    /* 淺米色 */
-      --bg-card: #FFFFFF;         /* 純白卡片 */
-      --text-primary: #2D2D2D;    /* 深灰文字 */
-      --text-secondary: #6B6B6B;  /* 次要文字 */
-      --text-muted: #999999;      /* 淡灰文字 */
-      --accent: #8B7355;          /* 木質棕 */
-      --accent-light: #C4B098;    /* 淡棕 */
-      --border: #E8E4DE;          /* 邊框色 */
-      --shadow: rgba(0,0,0,0.04); /* 極淡陰影 */
-      
-      /* 議題分類色 - 低飽和度自然色 */
-      --cat-safety: #7BA3A8;      /* 青灰 - 安全 */
-      --cat-health: #9B8AA6;      /* 淡紫 - 健康 */
-      --cat-education: #A8B07A;   /* 橄欖綠 - 教育 */
-      --cat-digital: #8899AA;     /* 藍灰 - 數位 */
-      --cat-society: #C4A87C;     /* 沙棕 - 社會 */
+      --bg-primary: #FAF9F7;
+      --bg-secondary: #F5F3EF;
+      --bg-card: #FFFFFF;
+      --text-primary: #2D2D2D;
+      --text-secondary: #5A5A5A;
+      --text-muted: #888888;
+      --accent: #8B7355;
+      --accent-light: #C4B098;
+      --border: #E8E4DE;
+      --shadow: rgba(0,0,0,0.04);
+      --cat-safety: #7BA3A8;
+      --cat-health: #9B8AA6;
+      --cat-education: #A8B07A;
+      --cat-digital: #8899AA;
+      --cat-society: #C4A87C;
     }
     
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
     
     body {
       font-family: 'Noto Sans TC', -apple-system, sans-serif;
       background: var(--bg-primary);
       color: var(--text-primary);
-      line-height: 1.8;
-      font-weight: 300;
+      line-height: 1.9;
+      font-weight: 400;
+      min-height: 100vh;
     }
     
-    /* ===== Header ===== */
+    /* Header */
     header {
       background: var(--bg-card);
       border-bottom: 1px solid var(--border);
-      padding: 24px 0;
-      position: sticky;
+      padding: 20px 0;
+      position: fixed;
       top: 0;
+      left: 0;
+      right: 0;
       z-index: 100;
     }
     
     .header-inner {
-      max-width: 1200px;
+      max-width: 1400px;
       margin: 0 auto;
-      padding: 0 24px;
+      padding: 0 32px;
       display: flex;
       justify-content: space-between;
       align-items: center;
     }
     
+    .logo-link {
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    
+    .logo-link img {
+      height: 44px;
+      width: auto;
+    }
+    
     .logo {
-      font-size: 14px;
-      font-weight: 400;
+      font-size: 15px;
+      font-weight: 500;
       color: var(--text-secondary);
       letter-spacing: 2px;
     }
     
     .logo span {
       color: var(--accent);
+      font-weight: 700;
+    }
+    
+    nav {
+      display: flex;
+      gap: 8px;
     }
     
     nav a {
       color: var(--text-secondary);
       text-decoration: none;
-      font-size: 13px;
-      margin-left: 32px;
+      font-size: 14px;
+      font-weight: 500;
+      padding: 10px 20px;
+      border-radius: 6px;
       letter-spacing: 1px;
-      transition: color 0.2s;
+      transition: all 0.2s;
+      cursor: pointer;
     }
     
     nav a:hover {
+      background: var(--bg-secondary);
       color: var(--accent);
     }
     
-    /* ===== Hero ===== */
-    .hero {
-      background: var(--bg-card);
-      padding: 80px 24px;
+    nav a.active {
+      background: var(--accent);
+      color: white;
+    }
+    
+    /* Main Container */
+    .main-container {
+      margin-top: 84px;
+      min-height: calc(100vh - 84px);
+    }
+    
+    /* Sections */
+    .section {
+      display: none;
+      padding: 60px 32px;
+      max-width: 1400px;
+      margin: 0 auto;
+      animation: fadeIn 0.3s ease;
+    }
+    
+    .section.active {
+      display: block;
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    .section-header {
       text-align: center;
-      border-bottom: 1px solid var(--border);
+      margin-bottom: 48px;
     }
     
-    .hero-label {
+    .section-label {
       font-size: 12px;
+      font-weight: 600;
       color: var(--accent);
-      letter-spacing: 4px;
-      margin-bottom: 16px;
+      letter-spacing: 3px;
+      margin-bottom: 12px;
     }
     
-    .hero h1 {
+    .section-title {
       font-size: 32px;
-      font-weight: 300;
+      font-weight: 700;
+      color: var(--text-primary);
       margin-bottom: 16px;
-      letter-spacing: 2px;
     }
     
-    .hero-subtitle {
+    .section-subtitle {
       font-size: 15px;
-      color: var(--text-secondary);
-      margin-bottom: 32px;
+      color: var(--text-muted);
     }
     
-    .hero-stats {
+    /* Stats Bar */
+    .stats-bar {
       display: flex;
       justify-content: center;
       gap: 48px;
-      margin-top: 40px;
+      padding: 32px;
+      background: var(--bg-card);
+      border-radius: 12px;
+      margin-bottom: 48px;
+      flex-wrap: wrap;
     }
     
     .stat {
@@ -126,34 +175,18 @@
     
     .stat-number {
       font-size: 36px;
-      font-weight: 500;
+      font-weight: 700;
       color: var(--accent);
     }
     
     .stat-label {
       font-size: 12px;
+      font-weight: 500;
       color: var(--text-muted);
       margin-top: 4px;
-      letter-spacing: 1px;
     }
     
-    /* ===== Main Content ===== */
-    main {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 60px 24px;
-    }
-    
-    .section-title {
-      font-size: 13px;
-      color: var(--text-muted);
-      letter-spacing: 3px;
-      margin-bottom: 32px;
-      padding-bottom: 16px;
-      border-bottom: 1px solid var(--border);
-    }
-    
-    /* ===== Issue Cards Grid ===== */
+    /* Issue Cards */
     .issues-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
@@ -163,7 +196,7 @@
     .issue-card {
       background: var(--bg-card);
       border: 1px solid var(--border);
-      border-radius: 4px;
+      border-radius: 8px;
       padding: 32px;
       cursor: pointer;
       transition: all 0.3s ease;
@@ -171,8 +204,8 @@
     }
     
     .issue-card:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 24px var(--shadow);
+      transform: translateY(-4px);
+      box-shadow: 0 12px 32px var(--shadow);
     }
     
     .issue-rank {
@@ -180,32 +213,32 @@
       top: 24px;
       right: 24px;
       font-size: 48px;
-      font-weight: 100;
+      font-weight: 200;
       color: var(--border);
-      line-height: 1;
     }
     
     .issue-category {
       display: inline-block;
       font-size: 11px;
-      padding: 4px 12px;
-      border-radius: 2px;
+      font-weight: 600;
+      padding: 5px 12px;
+      border-radius: 4px;
       margin-bottom: 16px;
       letter-spacing: 1px;
     }
     
     .issue-card h3 {
-      font-size: 18px;
-      font-weight: 400;
+      font-size: 20px;
+      font-weight: 700;
       margin-bottom: 12px;
-      line-height: 1.5;
       padding-right: 48px;
+      line-height: 1.5;
     }
     
     .issue-excerpt {
-      font-size: 13px;
+      font-size: 15px;
       color: var(--text-secondary);
-      line-height: 1.8;
+      line-height: 1.9;
       margin-bottom: 20px;
     }
     
@@ -224,24 +257,289 @@
     
     .issue-score span {
       color: var(--accent);
-      font-weight: 500;
+      font-weight: 700;
     }
     
     .read-more {
       font-size: 12px;
+      font-weight: 600;
       color: var(--accent);
-      text-decoration: none;
-      letter-spacing: 1px;
     }
     
-    /* Category Colors */
     .cat-safety { background: var(--cat-safety); color: white; }
     .cat-health { background: var(--cat-health); color: white; }
     .cat-education { background: var(--cat-education); color: white; }
     .cat-digital { background: var(--cat-digital); color: white; }
     .cat-society { background: var(--cat-society); color: white; }
     
-    /* ===== Detail Modal ===== */
+    /* Info Cards */
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+      margin-bottom: 40px;
+    }
+    
+    .info-card {
+      background: var(--bg-card);
+      padding: 28px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+    }
+    
+    .info-card h4 {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--accent);
+      margin-bottom: 12px;
+    }
+    
+    .info-card p {
+      font-size: 15px;
+      color: var(--text-secondary);
+      line-height: 1.9;
+    }
+    
+    /* Press List */
+    .press-list {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    
+    .press-item {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 24px 28px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+    
+    .press-item-info h4 {
+      font-size: 18px;
+      font-weight: 700;
+      margin-top: 6px;
+    }
+    
+    .press-item-info .date {
+      font-size: 15px;
+      color: var(--accent);
+      font-weight: 600;
+    }
+    
+    .press-item-info .desc {
+      font-size: 15px;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+    
+    .btn {
+      background: var(--accent);
+      color: white;
+      padding: 10px 20px;
+      border-radius: 6px;
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 500;
+      transition: background 0.2s;
+    }
+    
+    .btn:hover {
+      background: #6B5344;
+    }
+    
+    /* About Section */
+    .about-content {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    
+    .about-content p {
+      font-size: 15px;
+      color: var(--text-secondary);
+      margin-bottom: 20px;
+      line-height: 2;
+    }
+    
+    .about-box {
+      background: var(--bg-card);
+      padding: 32px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      margin-bottom: 32px;
+    }
+    
+    .about-box h4 {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--accent);
+      margin-bottom: 20px;
+    }
+    
+    .about-list {
+      list-style: none;
+    }
+    
+    .about-list li {
+      font-size: 15px;
+      color: var(--text-secondary);
+      padding: 12px 0;
+      padding-left: 32px;
+      position: relative;
+      line-height: 1.9;
+      border-bottom: 1px solid var(--border);
+    }
+    
+    .about-list li:last-child {
+      border-bottom: none;
+    }
+    
+    .about-list li .num {
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-weight: 700;
+    }
+    
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 16px;
+      margin: 32px 0;
+    }
+    
+    .feature-card {
+      background: var(--bg-card);
+      padding: 24px;
+      border-radius: 8px;
+      text-align: center;
+      border: 1px solid var(--border);
+    }
+    
+    .feature-card .icon {
+      font-size: 28px;
+      margin-bottom: 12px;
+    }
+    
+    .feature-card .title {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+    
+    .feature-card .desc {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+    
+    .highlight-box {
+      background: linear-gradient(135deg, var(--accent) 0%, #6B5344 100%);
+      padding: 32px;
+      border-radius: 8px;
+      color: white;
+    }
+    
+    .highlight-box p {
+      color: white;
+      margin-bottom: 16px;
+    }
+    
+    .highlight-box .signature {
+      font-size: 14px;
+      opacity: 0.9;
+      text-align: right;
+    }
+    
+    /* Team Photo */
+    .team-photo-container {
+      margin: 48px 0;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 8px 32px var(--shadow);
+    }
+    
+    .team-photo-container img {
+      width: 100%;
+      height: auto;
+      display: block;
+      filter: saturate(0.85) sepia(0.08) brightness(1.03) contrast(0.97);
+    }
+    
+    .team-photo-caption {
+      background: var(--bg-card);
+      padding: 20px 24px;
+      border-top: 1px solid var(--border);
+      text-align: center;
+    }
+    
+    .team-photo-caption p {
+      font-size: 14px;
+      color: var(--text-muted);
+      margin: 0;
+    }
+    
+    .team-photo-caption strong {
+      color: var(--accent);
+    }
+    
+    /* Contact Section */
+    .contact-content {
+      text-align: center;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    
+    .contact-logo {
+      width: 120px;
+      height: 120px;
+      margin: 0 auto 24px;
+    }
+    
+    .contact-logo img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+    
+    .contact-links {
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+      margin: 32px 0;
+      flex-wrap: wrap;
+    }
+    
+    .contact-links a {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 14px;
+      padding: 12px 24px;
+      background: var(--bg-card);
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      transition: all 0.2s;
+    }
+    
+    .contact-links a:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+    
+    .copyright {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-top: 48px;
+    }
+    
+    /* Modal */
     .modal-overlay {
       display: none;
       position: fixed;
@@ -249,72 +547,82 @@
       left: 0;
       right: 0;
       bottom: 0;
-      background: rgba(0,0,0,0.3);
+      background: rgba(0,0,0,0.5);
       z-index: 1000;
       overflow-y: auto;
+      padding: 40px 20px;
     }
     
     .modal-overlay.active {
-      display: block;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
     }
     
     .modal {
       background: var(--bg-card);
-      max-width: 800px;
-      margin: 40px auto;
-      border-radius: 4px;
+      max-width: 900px;
+      width: 100%;
+      border-radius: 12px;
       position: relative;
+      margin: auto;
     }
     
     .modal-header {
-      padding: 40px 48px;
+      padding: 40px 48px 24px;
       border-bottom: 1px solid var(--border);
     }
     
     .modal-close {
       position: absolute;
-      top: 24px;
-      right: 24px;
-      background: none;
+      top: 20px;
+      right: 20px;
+      background: var(--bg-secondary);
       border: none;
       font-size: 24px;
       color: var(--text-muted);
       cursor: pointer;
       width: 40px;
       height: 40px;
+      border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
     }
     
     .modal-close:hover {
+      background: var(--border);
       color: var(--text-primary);
     }
     
     .modal-rank {
-      font-size: 11px;
+      font-size: 12px;
+      font-weight: 600;
       color: var(--accent);
       letter-spacing: 2px;
-      margin-bottom: 8px;
     }
     
     .modal-title {
       font-size: 24px;
-      font-weight: 400;
-      margin-bottom: 16px;
+      font-weight: 700;
+      margin: 8px 0 16px;
+      line-height: 1.4;
     }
     
     .modal-body {
-      padding: 40px 48px;
+      padding: 32px 48px 48px;
+      max-height: 60vh;
+      overflow-y: auto;
     }
     
     .modal-section {
-      margin-bottom: 40px;
+      margin-bottom: 32px;
     }
     
     .modal-section h4 {
       font-size: 13px;
-      color: var(--text-muted);
+      font-weight: 600;
+      color: var(--accent);
       letter-spacing: 2px;
       margin-bottom: 16px;
       padding-bottom: 8px;
@@ -322,22 +630,22 @@
     }
     
     .modal-section p {
-      font-size: 14px;
+      font-size: 15px;
       color: var(--text-secondary);
       margin-bottom: 12px;
+      line-height: 1.9;
     }
     
     .modal-section ul {
       list-style: none;
-      padding: 0;
     }
     
     .modal-section li {
-      font-size: 14px;
+      font-size: 15px;
       color: var(--text-secondary);
-      padding: 8px 0;
-      padding-left: 20px;
+      padding: 8px 0 8px 20px;
       position: relative;
+      line-height: 1.8;
     }
     
     .modal-section li::before {
@@ -346,188 +654,332 @@
       left: 0;
       top: 16px;
       width: 6px;
-      height: 1px;
+      height: 2px;
       background: var(--accent);
+    }
+    
+    .modal-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 12px 0;
+      font-size: 15px;
+    }
+    
+    .modal-table th, .modal-table td {
+      border: 1px solid var(--border);
+      padding: 10px 14px;
+      text-align: left;
+    }
+    
+    .modal-table th {
+      background: var(--bg-secondary);
+      font-weight: 600;
+    }
+    
+    .modal-table td {
+      color: var(--text-secondary);
     }
     
     .data-highlight {
       background: var(--bg-secondary);
       padding: 24px;
-      border-radius: 4px;
+      border-radius: 8px;
+      display: flex;
+      gap: 32px;
+      flex-wrap: wrap;
       margin: 16px 0;
     }
     
-    .data-highlight .number {
-      font-size: 32px;
-      font-weight: 500;
-      color: var(--accent);
-    }
-    
-    .data-highlight .label {
-      font-size: 13px;
-      color: var(--text-muted);
-      margin-top: 4px;
-    }
+    .data-highlight-item { flex: 1; min-width: 120px; }
+    .data-highlight .number { font-size: 32px; font-weight: 700; color: var(--accent); }
+    .data-highlight .label { font-size: 12px; color: var(--text-muted); margin-top: 4px; }
     
     .demands-list {
       background: var(--bg-secondary);
       padding: 24px;
-      border-radius: 4px;
+      border-radius: 8px;
     }
     
     .demands-list h5 {
       font-size: 12px;
+      font-weight: 600;
       color: var(--accent);
       letter-spacing: 2px;
       margin-bottom: 16px;
     }
     
     .modal-footer {
-      padding: 24px 48px;
+      padding: 20px 48px;
       border-top: 1px solid var(--border);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    
-    .download-btn {
-      background: var(--accent);
-      color: white;
-      border: none;
-      padding: 12px 24px;
       font-size: 13px;
-      border-radius: 2px;
-      cursor: pointer;
-      letter-spacing: 1px;
-      transition: background 0.2s;
-    }
-    
-    .download-btn:hover {
-      background: var(--text-primary);
-    }
-    
-    /* ===== Footer ===== */
-    footer {
-      background: var(--bg-card);
-      border-top: 1px solid var(--border);
-      padding: 48px 24px;
-      text-align: center;
-    }
-    
-    .footer-logo {
-      font-size: 14px;
-      color: var(--accent);
-      letter-spacing: 2px;
-      margin-bottom: 16px;
-    }
-    
-    .footer-links {
-      margin-bottom: 24px;
-    }
-    
-    .footer-links a {
       color: var(--text-muted);
-      text-decoration: none;
-      font-size: 12px;
-      margin: 0 16px;
-      letter-spacing: 1px;
     }
     
-    .footer-links a:hover {
-      color: var(--accent);
-    }
+    .modal-footer span { color: var(--accent); }
     
-    .copyright {
-      font-size: 11px;
-      color: var(--text-muted);
-      letter-spacing: 1px;
-    }
-    
-    /* ===== Responsive ===== */
+    /* Responsive */
     @media (max-width: 768px) {
-      .header-inner {
-        flex-direction: column;
-        gap: 16px;
-      }
-      
-      nav a {
-        margin: 0 12px;
-      }
-      
-      .hero h1 {
-        font-size: 24px;
-      }
-      
-      .hero-stats {
-        flex-wrap: wrap;
-        gap: 24px;
-      }
-      
-      .issues-grid {
-        grid-template-columns: 1fr;
-      }
-      
-      .modal {
-        margin: 0;
-        border-radius: 0;
-        min-height: 100vh;
-      }
-      
-      .modal-header,
-      .modal-body,
-      .modal-footer {
-        padding-left: 24px;
-        padding-right: 24px;
-      }
+      .header-inner { flex-direction: column; gap: 16px; padding: 0 16px; }
+      nav { flex-wrap: wrap; justify-content: center; }
+      nav a { padding: 8px 14px; font-size: 13px; }
+      .main-container { margin-top: 140px; }
+      .section { padding: 40px 16px; }
+      .section-title { font-size: 24px; }
+      .stats-bar { gap: 24px; padding: 24px; }
+      .stat-number { font-size: 28px; }
+      .issues-grid { grid-template-columns: 1fr; }
+      .modal-header, .modal-body, .modal-footer { padding-left: 24px; padding-right: 24px; }
     }
   </style>
 </head>
 <body>
-  <!-- Header -->
   <header>
     <div class="header-inner">
-      <div class="logo">國教行動聯盟 <span>青年部</span></div>
+      <a href="#" class="logo-link" onclick="showSection('issues')">
+        <img src="logo.png" alt="Logo">
+        <span class="logo">國教行動聯盟 <span>青年部</span></span>
+      </a>
       <nav>
-        <a href="#issues">十大議題</a>
-        <a href="#about">關於調查</a>
-        <a href="#contact">聯絡我們</a>
+        <a onclick="showSection('issues')" class="active" data-section="issues">十大議題</a>
+        <a onclick="showSection('about')" data-section="about">關於調查</a>
+        <a onclick="showSection('press')" data-section="press">新聞稿</a>
+        <a onclick="showSection('media')" data-section="media">媒體報導</a>
+        <a onclick="showSection('team')" data-section="team">認識我們</a>
+        <a onclick="showSection('contact')" data-section="contact">聯絡我們</a>
       </nav>
     </div>
   </header>
   
-  <!-- Hero -->
-  <section class="hero">
-    <div class="hero-label">2025 YOUTH SURVEY</div>
-    <h1>全國青少年最關注的十大議題</h1>
-    <p class="hero-subtitle">8,742 位青少年的聲音，讓我們一起聽見</p>
-    <div class="hero-stats">
-      <div class="stat">
-        <div class="stat-number">8,742</div>
-        <div class="stat-label">有效問卷</div>
+  <div class="main-container">
+    <!-- 十大議題 -->
+    <div id="issues" class="section active">
+      <div class="section-header">
+        <div class="section-label">2025 YOUTH SURVEY</div>
+        <h1 class="section-title">全國青少年最關注的十大議題</h1>
+        <p class="section-subtitle">8,742 位青少年的聲音，讓我們一起聽見</p>
       </div>
-      <div class="stat">
-        <div class="stat-number">25</div>
-        <div class="stat-label">調查題目</div>
+      
+      <div class="stats-bar">
+        <div class="stat"><div class="stat-number">8,742</div><div class="stat-label">有效問卷</div></div>
+        <div class="stat"><div class="stat-number">25</div><div class="stat-label">調查題目</div></div>
+        <div class="stat"><div class="stat-number">22</div><div class="stat-label">縣市涵蓋</div></div>
+        <div class="stat"><div class="stat-number">5</div><div class="stat-label">場記者會</div></div>
+        <div class="stat"><div class="stat-number">119</div><div class="stat-label">篇新聞露出</div></div>
       </div>
-      <div class="stat">
-        <div class="stat-number">22</div>
-        <div class="stat-label">縣市涵蓋</div>
-      </div>
-      <div class="stat">
-        <div class="stat-number">3</div>
-        <div class="stat-label">場記者會</div>
-      </div>
+      
+      <div class="issues-grid" id="issuesGrid"></div>
     </div>
-  </section>
-  
-  <!-- Main Content -->
-  <main id="issues">
-    <div class="section-title">十大議題 / TOP 10 ISSUES</div>
     
-    <div class="issues-grid" id="issuesGrid">
-      <!-- Cards will be injected by JS -->
+    <!-- 關於調查 -->
+    <div id="about" class="section">
+      <div class="section-header">
+        <div class="section-label">ABOUT THE SURVEY</div>
+        <h1 class="section-title">關於調查</h1>
+        <p class="section-subtitle">「這世代的心聲」— 讓青少年的聲音被聽見</p>
+      </div>
+      
+      <div class="about-content">
+        <p>國教行動聯盟青年部以「這世代的心聲」為主題，聚焦2025年全國青少年最關注的十大議題，旨在讓青少年感受到自己的聲音被聽見、意見被重視，並呼籲政府及社會大眾共同關注下一代的需要。</p>
+        <p>我們期待透過此調查，揭示以青少年角度認為教育體系中需要改進的地方，並促進教育政策改革，讓教育體系更加符合青少年的需求與期望。</p>
+        
+        <div class="info-grid">
+          <div class="info-card">
+            <h4>📋 題目設計</h4>
+            <p>根據學生與家長的意見，整理出最能反映當前青少年關心議題的<strong>25個問題</strong>，涵蓋：校園安全、校園環境、人際關係、情感與情緒教育、課綱學習與生涯、公共政策、家庭教育以及公民教育。</p>
+          </div>
+          <div class="info-card">
+            <h4>📊 調查方式</h4>
+            <p>採用電子問卷線上填答方式，透過教師、家長及學生團體等合作發放。問題採用<strong>Likert量表（1-5顆星）</strong>讓學生衡量其對該議題的關注程度。</p>
+          </div>
+          <div class="info-card">
+            <h4>🎯 調查對象</h4>
+            <p><strong>國小五年級至高中三年級</strong>的青少年，涵蓋全國22縣市，最終收集<strong>8,742份有效問卷</strong>。</p>
+          </div>
+          <div class="info-card">
+            <h4>📅 調查期間</h4>
+            <p>問卷調查時間為 <strong>2024/12/11 - 2025/01/10</strong>，調查結果於 <strong>2025/01/21</strong> 記者會正式公布。</p>
+          </div>
+        </div>
+        
+        <div class="about-box">
+          <h4>🔍 前置作業</h4>
+          <p style="font-size:15px;color:var(--text-secondary);line-height:1.9;">國教盟青年部透過座談訪談的方式，初步了解學生對於自己生活中所關注的議題，例如：校園安全、學習壓力、課程內容、情感與情緒管理等方面的問題，同時也收集家長對於學生生活的關注。另外也針對過去一年發生的社會事件，了解學生對這些事件的關心程度和看法。問卷初步完成後，也隨機分別給國小、國中及高中各五位學生試填，確保學生能理解題目之意思。</p>
+        </div>
+      </div>
     </div>
-  </main>
+    
+    <!-- 新聞稿 -->
+    <div id="press" class="section">
+      <div class="section-header">
+        <div class="section-label">PRESS RELEASES</div>
+        <h1 class="section-title">新聞稿</h1>
+        <p class="section-subtitle">青年部歷次記者會新聞稿下載</p>
+      </div>
+      
+      <div class="press-list" style="max-width:800px;margin:0 auto;">
+        <div class="press-item">
+          <div class="press-item-info">
+            <span class="date">2025/01/21</span>
+            <h4>十大議題調查結果發布記者會</h4>
+            <p class="desc">全台首次！8,743份問卷揭示「這世代的心聲」</p>
+          </div>
+          <a href="press/20250121_調查結果發布.pdf" target="_blank" class="btn">下載 PDF</a>
+        </div>
+        <div class="press-item">
+          <div class="press-item-info">
+            <span class="date">2025/10/20</span>
+            <h4>議題一：網路資訊辨識與詐騙預防</h4>
+            <p class="desc">國教盟青年部呼籲：列入課綱、師資增能、落實檢核</p>
+          </div>
+          <a href="press/20251020_議題1_網路資訊.pdf" target="_blank" class="btn">下載 PDF</a>
+        </div>
+        <div class="press-item">
+          <div class="press-item-info">
+            <span class="date">2025/11/17</span>
+            <h4>議題二：菸品與藥物使用警告</h4>
+            <p class="desc">青少年陷入菸、毒與心理健康三重危機</p>
+          </div>
+          <a href="press/20251117_議題2_菸品藥物.pdf" target="_blank" class="btn">下載 PDF</a>
+        </div>
+        <div class="press-item">
+          <div class="press-item-info">
+            <span class="date">2025/12/08</span>
+            <h4>議題三：正確性觀念與互相尊重教育</h4>
+            <p class="desc">國教盟青年部呼籲應補上保護課</p>
+          </div>
+          <a href="press/20251208_議題3_性教育.pdf" target="_blank" class="btn">下載 PDF</a>
+        </div>
+      </div>
+    </div>
+    
+    <!-- 媒體報導 -->
+    <div id="media" class="section">
+      <div class="section-header">
+        <div class="section-label">MEDIA COVERAGE</div>
+        <h1 class="section-title">媒體報導</h1>
+        <p class="section-subtitle">十大議題相關新聞露出整理</p>
+      </div>
+      
+      <div class="press-list" style="max-width:800px;margin:0 auto;">
+        <div class="press-item">
+          <div class="press-item-info">
+            <span class="date">2025/01/21</span>
+            <h4>十大議題調查結果發布</h4>
+            <p class="desc">全台首次！8,743份問卷揭示「這世代的心聲」</p>
+            <p class="desc" style="color:var(--accent);font-weight:600;">📰 新聞露出 25 篇</p>
+          </div>
+          <a href="https://lite.evernote.com/note/8fd71e8a-a4ba-18b3-83d3-6a12e54a4f8c" target="_blank" class="btn">查看報導</a>
+        </div>
+        
+        <div class="press-item">
+          <div class="press-item-info">
+            <span class="date">2025/10/20</span>
+            <h4>議題一：網路資訊辨識與詐騙預防</h4>
+            <p class="desc">國教盟青年部呼籲：列入課綱、師資增能、落實檢核</p>
+            <p class="desc" style="color:var(--accent);font-weight:600;">📰 新聞露出 24 篇</p>
+          </div>
+          <a href="https://lite.evernote.com/note/6fcb7f06-47f4-3121-f2ad-3aa071084e82" target="_blank" class="btn">查看報導</a>
+        </div>
+        
+        <div class="press-item">
+          <div class="press-item-info">
+            <span class="date">2025/11/17</span>
+            <h4>議題二：菸品與藥物使用警告</h4>
+            <p class="desc">青少年陷入菸、毒與心理健康三重危機</p>
+            <p class="desc" style="color:var(--accent);font-weight:600;">📰 新聞露出 24 篇</p>
+          </div>
+          <a href="https://lite.evernote.com/note/dff7cc00-5799-ce31-e53f-6658db9e39b3" target="_blank" class="btn">查看報導</a>
+        </div>
+        
+        <div class="press-item">
+          <div class="press-item-info">
+            <span class="date">2025/12/08</span>
+            <h4>議題三：正確性觀念與互相尊重教育</h4>
+            <p class="desc">國教盟青年部呼籲應補上保護課</p>
+            <p class="desc" style="color:var(--accent);font-weight:600;">📰 新聞露出 43 篇</p>
+          </div>
+          <a href="https://lite.evernote.com/note/0b0d926a-eb86-9ba5-3fc0-a990e58daad1" target="_blank" class="btn">查看報導</a>
+        </div>
+      </div>
+      
+      <p style="text-align:center;margin-top:40px;color:var(--text-muted);font-size:15px;">
+        📊 十大議題相關新聞露出累計 <strong style="color:var(--accent);font-size:20px;">119</strong> 篇
+      </p>
+    </div>
+    
+    <!-- 認識我們 -->
+    <div id="team" class="section">
+      <div class="section-header">
+        <div class="section-label">ABOUT US</div>
+        <h1 class="section-title">認識我們</h1>
+        <p class="section-subtitle">國教行動聯盟青年部</p>
+      </div>
+      
+      <div class="about-content">
+        <p>在臺灣教育制度發展歷程中，學生經常位於政策調整與制度變革的最前線，卻未必同時具備充分而有效的制度性發聲管道。教育政策影響深遠，涉及升學制度、課程設計、校園環境及學生權益等面向，其制定與修正理應納入利害關係人之實質參與，特別是直接受影響之青年世代。</p>
+        
+        <p><strong>2024年6月，國教行動聯盟青年部正式成立。</strong>青年部由關心公共事務之學生與青年組成，核心理念在於強化青年於教育政策討論中的主體性地位。我們主張，教育改革不應僅由行政機關或專家單向規劃，而應建立更具對話性與回饋機制之公共參與模式。</p>
+        
+        <div class="team-photo-container">
+          <img src="team-photo.jpg" alt="國教盟青年部記者會合照">
+          <div class="team-photo-caption">
+            <p><strong>2025 青少年十大關注議題調查結果發布記者會</strong></p>
+          </div>
+        </div>
+        
+        <div class="about-box">
+          <h4>青年部運作方式</h4>
+          <p style="font-size:15px;color:var(--text-secondary);margin-bottom:16px;">青年部延續國教行動聯盟理性監督、制度檢視與數據論證之精神，透過以下方式參與公共討論：</p>
+          <ul class="about-list">
+            <li><span class="num">一、</span><strong>政策分析與意見彙整：</strong>蒐集學生、家長與教師之經驗觀察，整理具體問題與改善建議。</li>
+            <li><span class="num">二、</span><strong>立法與行政溝通：</strong>拜會立法委員及相關主管機關，提出具可行性與制度基礎之建議。</li>
+            <li><span class="num">三、</span><strong>公共論壇與倡議活動：</strong>辦理座談、辯論與說明會，促進理性討論與資訊透明。</li>
+            <li><span class="num">四、</span><strong>議題研究與書面建議：</strong>以資料蒐集與比較法視點為基礎，提出制度層面之修正方向。</li>
+          </ul>
+        </div>
+        
+        <p>我們認為，公共參與不應流於情緒性動員，而應建立在清楚定義問題、釐清政策目的、評估制度效果與衡量公共利益之基礎上。唯有透過理性討論與程序正義的累積，青年世代才能真正成為教育改革的參與者，而非被動承受者。</p>
+        
+        <div class="feature-grid">
+          <div class="feature-card"><div class="icon">🗣️</div><div class="title">尊重多元意見</div><div class="desc">表達空間</div></div>
+          <div class="feature-card"><div class="icon">⚖️</div><div class="title">制度與政策</div><div class="desc">核心討論架構</div></div>
+          <div class="feature-card"><div class="icon">📊</div><div class="title">重視證據資料</div><div class="desc">政策評估</div></div>
+          <div class="feature-card"><div class="icon">🌱</div><div class="title">培養青年</div><div class="desc">思辨與公民責任</div></div>
+        </div>
+        
+        <div class="highlight-box">
+          <p>青年部期待透過持續參與公共事務與制度監督，使教育政策更貼近教學現場實況，更符合比例原則與公共利益要求，並在保障學生權益的前提下，推動臺灣教育體系朝向更穩定與可預測之發展方向。</p>
+          <p class="signature">— 國教行動聯盟青年部</p>
+        </div>
+      </div>
+    </div>
+    
+    <!-- 聯絡我們 -->
+    <div id="contact" class="section">
+      <div class="section-header">
+        <div class="section-label">CONTACT US</div>
+        <h1 class="section-title">聯絡我們</h1>
+        <p class="section-subtitle">歡迎與我們交流</p>
+      </div>
+      
+      <div class="contact-content">
+        <div class="contact-logo">
+          <img src="logo.png" alt="國教行動聯盟青年部">
+        </div>
+        
+        <h3 style="font-size:20px;font-weight:700;color:var(--accent);margin-bottom:8px;">國教行動聯盟青年部</h3>
+        <p style="color:var(--text-muted);font-size:15px;">Action Alliance on Basic Education - Youth Division</p>
+        
+        <div class="contact-links">
+          <a href="mailto:aabeyouth@gmail.com">📧 aabeyouth@gmail.com</a>
+          <a href="https://www.facebook.com/profile.php?id=61565779514036" target="_blank">📘 Facebook</a>
+          <a href="https://www.instagram.com/aabe_youth" target="_blank">📷 Instagram</a>
+        </div>
+        
+        <p class="copyright">© 2025 National Alliance for Education Reform - Youth Division</p>
+      </div>
+    </div>
+  </div>
   
   <!-- Modal -->
   <div class="modal-overlay" id="modalOverlay">
@@ -538,208 +990,39 @@
         <h2 class="modal-title" id="modalTitle"></h2>
         <span class="issue-category" id="modalCategory"></span>
       </div>
-      <div class="modal-body" id="modalBody">
-        <!-- Content injected by JS -->
-      </div>
-      <div class="modal-footer">
-        <span style="font-size: 12px; color: var(--text-muted);">完整報告請參閱白皮書</span>
-        <button class="download-btn" id="downloadBtn">下載完整論述 PDF</button>
-      </div>
+      <div class="modal-body" id="modalBody"></div>
+      <div class="modal-footer" id="modalFooter"></div>
     </div>
   </div>
   
-  <!-- Footer -->
-  <footer id="contact">
-    <div class="footer-logo">國教行動聯盟青年部</div>
-    <div class="footer-links">
-      <a href="https://www.facebook.com/naer.tw" target="_blank">Facebook</a>
-      <a href="https://www.instagram.com/naer_youth" target="_blank">Instagram</a>
-      <a href="mailto:naer.youth@gmail.com">Email</a>
-    </div>
-    <p class="copyright">© 2025 National Alliance for Education Reform - Youth Division</p>
-  </footer>
-  
   <script>
-    // ===== 十大議題資料 =====
+    // Tab Navigation
+    function showSection(sectionId) {
+      document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+      document.querySelectorAll('nav a').forEach(a => a.classList.remove('active'));
+      document.getElementById(sectionId).classList.add('active');
+      document.querySelector('nav a[data-section="' + sectionId + '"]').classList.add('active');
+      window.scrollTo(0, 0);
+    }
+    
+    // Issues Data
     var issues = [
-      {
-        rank: 1,
-        title: "從小學習如何分辨網路資訊，預防詐騙和不正確的訊息",
-        shortTitle: "網路資訊辨識與詐騙預防",
-        category: "數位素養",
-        catClass: "cat-digital",
-        score: 4.40,
-        excerpt: "台灣連續11年被評為全球受境外假訊息影響最嚴重的國家，青少年詐騙受害人數8年內成長近3倍。",
-        keyData: "2,346人",
-        keyDataLabel: "2024年未滿18歲詐騙受害人數",
-        demands: [
-          "將「媒體識讀」列入課程綱要應融入之議題",
-          "將媒體素養研習納入教師在職進修",
-          "建立跨部會教材資源平台"
-        ],
-        pressDate: "2025/10/20"
-      },
-      {
-        rank: 2,
-        title: "政府加強菸品與藥物使用警告，減少我受到菸品與藥物濫用的傷害",
-        shortTitle: "菸品與藥物使用警告",
-        category: "健康安全",
-        catClass: "cat-health",
-        score: 4.35,
-        excerpt: "電子煙成為毒品滲透新管道，78%藥癮少年同時患有精神疾病，校園與輔導體系卻跟不上變化。",
-        keyData: "38,000+人",
-        keyDataLabel: "2024年青少年毒品嫌疑犯人數",
-        demands: [
-          "全面禁止加味加熱菸及所有加味菸品",
-          "加速通過菸害防制法修法（納入持有載具罰則）",
-          "建立跨部會協作與資訊分級共享機制",
-          "強化心理支持系統預防藥物濫用"
-        ],
-        pressDate: "2025/11/17"
-      },
-      {
-        rank: 3,
-        title: "學習正確的性觀念及如何互相尊重",
-        shortTitle: "正確性觀念與互相尊重教育",
-        category: "健康安全",
-        catClass: "cat-health",
-        score: 4.32,
-        excerpt: "性影像被害人年齡層以13-17歲占比最高（32.9%），未成年受害比例達52.6%。現行每週僅1節健康教育課。",
-        keyData: "52.6%",
-        keyDataLabel: "性侵害案件未成年受害比例",
-        demands: [
-          "優先保障性教育與情感／界線教育時數",
-          "全面更新教材（身體自主、同意文化、數位界線）",
-          "整合出「兒少友善、單一入口」的求助平臺"
-        ],
-        pressDate: "2025/12/08"
-      },
-      {
-        rank: 4,
-        title: "完善校園霸凌防治機制，讓每個人都能在友善環境中學習",
-        shortTitle: "校園霸凌防治",
-        category: "校園安全",
-        catClass: "cat-safety",
-        score: 4.28,
-        excerpt: "2024年校園霸凌通報案件創新高，網路霸凌成為新型態威脅。芬蘭KiVa計畫證實：預防教育比處罰更有效。",
-        keyData: "5,043件",
-        keyDataLabel: "2024年校園性別事件通報案件",
-        demands: [
-          "強化預防教育，導入KiVa等實證課程",
-          "建立完善的網路霸凌通報與處理機制",
-          "增設旁觀者介入訓練課程"
-        ],
-        pressDate: null
-      },
-      {
-        rank: 5,
-        title: "維護校園環境整潔，提供舒適的學習空間",
-        shortTitle: "校園環境整潔",
-        category: "校園環境",
-        catClass: "cat-education",
-        score: 4.25,
-        excerpt: "研究顯示清潔環境可減少46%因病缺課。日本「掃除」文化蘊含責任感、團隊合作等教育意涵。",
-        keyData: "46%",
-        keyDataLabel: "清潔環境可減少的缺課率",
-        demands: [
-          "優化清掃制度，平衡教育意涵與學生負擔",
-          "改善清潔工具與衛生設備",
-          "將環境維護納入生活教育課程"
-        ],
-        pressDate: null
-      },
-      {
-        rank: 6,
-        title: "加強對青少年心理健康的關注與支持",
-        shortTitle: "青少年心理健康",
-        category: "身心健康",
-        catClass: "cat-health",
-        score: 4.22,
-        excerpt: "青少年自殺率10年翻倍，15-24歲自殺為第二大死因。近四成青少年遇心理困擾「不告訴任何人」。",
-        keyData: "11.9人/十萬",
-        keyDataLabel: "15-24歲自殺率（10年前僅5.9）",
-        demands: [
-          "提升輔導人力至國際標準（1:500）",
-          "推動心理健康教育入課綱",
-          "建立青少年友善單一求助入口"
-        ],
-        pressDate: null
-      },
-      {
-        rank: 7,
-        title: "提升數位素養與媒體識讀能力，成為負責任的數位公民",
-        shortTitle: "數位素養與媒體識讀",
-        category: "數位素養",
-        catClass: "cat-digital",
-        score: 4.18,
-        excerpt: "84.6%青少年每日使用社群媒體，13.6%已沉迷。58.4%每週使用生成式AI，但60%從未查證AI資訊。",
-        keyData: "84.6%",
-        keyDataLabel: "每日使用社群媒體的青少年比例",
-        demands: [
-          "將數位公民素養納入正式課程",
-          "新增AI素養教育模組",
-          "強化網路禮儀與數位足跡教育"
-        ],
-        pressDate: null
-      },
-      {
-        rank: 8,
-        title: "促進青少年參與社會與政治事務的機會",
-        shortTitle: "青少年社會參與",
-        category: "公民參與",
-        catClass: "cat-society",
-        score: 4.15,
-        excerpt: "2022年18歲公民權公投未通過，台灣仍為全球少數維持20歲投票年齡的民主國家。青年參與管道有限。",
-        keyData: "501萬",
-        keyDataLabel: "公投同意票數（門檻962萬）",
-        demands: [
-          "落實學生自治，賦予實質參與權",
-          "擴大兒少代表、青年諮詢委員機制",
-          "推動審議式民主教育入課綱"
-        ],
-        pressDate: null
-      },
-      {
-        rank: 9,
-        title: "增加對環境保護的教育與實際行動機會",
-        shortTitle: "環境保護教育",
-        category: "環境永續",
-        catClass: "cat-education",
-        score: 4.12,
-        excerpt: "全球84%青年擔憂氣候變遷、37%感到焦慮。台灣雖有環境教育法，但課程缺乏系統性與行動導向。",
-        keyData: "84%",
-        keyDataLabel: "全球擔憂氣候變遷的青年比例",
-        demands: [
-          "建立系統性氣候變遷教育課程",
-          "推動全國校園碳盤查與減碳行動",
-          "支持青年參與國際氣候會議"
-        ],
-        pressDate: null
-      },
-      {
-        rank: 10,
-        title: "加強對青少年性健康的教育，包含避孕、性病防治等知識",
-        shortTitle: "青少年性健康教育",
-        category: "健康安全",
-        catClass: "cat-health",
-        score: 4.08,
-        excerpt: "15-19歲女性梅毒感染10年暴增53倍，青少年淋病12年增7倍。花蓮縣未成年懷孕率是台北市的11倍。",
-        keyData: "53倍",
-        keyDataLabel: "15-19歲女性梅毒感染10年增幅",
-        demands: [
-          "增加性健康教育時數（國中每學期至少8節）",
-          "更新教材納入完整避孕、性病防治知識",
-          "擴大HPV疫苗至男性青少年"
-        ],
-        pressDate: null
-      }
+      { rank: 1, title: "從小學習如何分辨網路資訊，預防詐騙和不正確的訊息", shortTitle: "網路資訊辨識與詐騙預防", category: "數位素養", catClass: "cat-digital", score: 4.40, excerpt: "台灣連續11年被評為全球受境外假訊息影響最嚴重的國家，青少年詐騙受害人數8年內成長近3倍。", pressDate: "2025/10/20", fullContent: '<div class="modal-section"><h4>關鍵數據</h4><div class="data-highlight"><div class="data-highlight-item"><div class="number">2,346人</div><div class="label">2024年未滿18歲詐騙受害人數</div></div><div class="data-highlight-item"><div class="number">3倍</div><div class="label">8年內成長幅度</div></div><div class="data-highlight-item"><div class="number">11年</div><div class="label">連續被評為全球假訊息重災區</div></div></div></div><div class="modal-section"><h4>問題現況</h4><p>根據瑞典哥德堡大學「多元民主計畫」2024年度報告，台灣連續第11年被評為全球受境外假訊息影響最嚴重的國家。內政部警政署統計顯示，全年詐騙案件高達122,805件，財產損失突破502億元新台幣。</p></div><div class="modal-section"><h4>國教盟青年部政策訴求</h4><div class="demands-list"><h5>記者會三大訴求（2025/10/20）</h5><ul><li>將「媒體識讀」列入課程綱要應融入之議題，明確規範媒體素養的課程時數與學習檢核指標</li><li>將媒體素養研習納入教師在職進修學分與補助，與事實查核中心合作提供模組化教案</li><li>建立跨部會「全國媒體素養教材資料庫」，涵蓋教案、評量樣卷、家長與學生自學資源</li></ul></div></div>' },
+      { rank: 2, title: "政府加強菸品與藥物使用警告，減少我受到菸品與藥物濫用的傷害", shortTitle: "菸品與藥物使用警告", category: "健康安全", catClass: "cat-health", score: 4.35, excerpt: "電子煙成為毒品滲透新管道，78%藥癮少年同時患有精神疾病，校園與輔導體系卻跟不上變化。", pressDate: "2025/11/17", fullContent: '<div class="modal-section"><h4>關鍵數據</h4><div class="data-highlight"><div class="data-highlight-item"><div class="number">38,000+</div><div class="label">2024年青少年毒品嫌疑犯人數</div></div><div class="data-highlight-item"><div class="number">78%</div><div class="label">藥癮少年同時有精神疾病</div></div><div class="data-highlight-item"><div class="number">9萬+</div><div class="label">正在使用電子煙的青少年</div></div></div></div><div class="modal-section"><h4>問題現況</h4><p>WHO 2024年報告指出，全球約有1,500萬名13至15歲青少年使用電子煙，青少年使用電子煙的可能性是成年人的9倍。電子煙產業透過「酷炫包裝」與「糖果口味」等行銷策略，刻意鎖定青少年市場。</p></div><div class="modal-section"><h4>國教盟青年部政策訴求</h4><div class="demands-list"><h5>記者會五大訴求（2025/11/17）</h5><ul><li>全面禁止加味加熱菸及所有加味菸品</li><li>補強師資訓練與宣導</li><li>加速通過菸害防制法修法，納入「持有電子煙載具」罰則</li><li>建立跨部會協作與資訊分級共享機制</li><li>強化心理支持系統預防藥物濫用</li></ul></div></div>' },
+      { rank: 3, title: "學習正確的性觀念及如何互相尊重", shortTitle: "正確性觀念與互相尊重教育", category: "健康安全", catClass: "cat-health", score: 4.32, excerpt: "性影像被害人年齡層以13-17歲占比最高（32.9%），未成年受害比例達52.6%。現行每週僅1節健康教育課。", pressDate: "2025/12/08", fullContent: '<div class="modal-section"><h4>關鍵數據</h4><div class="data-highlight"><div class="data-highlight-item"><div class="number">52.6%</div><div class="label">性影像案件未成年受害比例</div></div><div class="data-highlight-item"><div class="number">32.9%</div><div class="label">13-17歲為最大受害群體</div></div><div class="data-highlight-item"><div class="number">+96%</div><div class="label">校園性別事件4年通報成長</div></div></div></div><div class="modal-section"><h4>問題現況</h4><p>根據衛福部性影像處理中心2024年統計，13-17歲兒少占性影像被害人32.9%，未成年受害者占比高達52.6%。校園性別事件通報從2020年2,566件增至2024年5,043件，增幅達96%。</p></div><div class="modal-section"><h4>國教盟青年部政策訴求</h4><div class="demands-list"><h5>記者會三大訴求（2025/12/08）</h5><ul><li>優先保障性教育與情感／界線教育時數</li><li>全面更新教材，補強「身體自主、同意文化、數位界線」</li><li>整合出「兒少友善、單一入口」的求助平臺</li></ul></div></div>' },
+      { rank: 4, title: "完善校園霸凌防治機制，讓每個人都能在友善環境中學習", shortTitle: "校園霸凌防治", category: "校園安全", catClass: "cat-safety", score: 4.28, excerpt: "2024年校園霸凌通報案件創新高突破4,100件，網路霸凌成為新型態威脅。", pressDate: null, fullContent: '<div class="modal-section"><h4>關鍵數據</h4><div class="data-highlight"><div class="data-highlight-item"><div class="number">4,100+</div><div class="label">2024年校園霸凌通報件數</div></div><div class="data-highlight-item"><div class="number">+28%</div><div class="label">較2023年成長幅度</div></div></div></div><div class="modal-section"><h4>問題現況</h4><p>台灣校園霸凌通報案件逐年上升，從2022年約2,800件增至2024年超過4,100件。網路霸凌因其匿名性、持續性與快速擴散性，使受害者即使離開校園也難以逃脫傷害。</p></div><div class="modal-section"><h4>政策建議</h4><div class="demands-list"><h5>國教盟青年部主張</h5><ul><li>強化預防教育，導入KiVa等實證課程</li><li>建立完善的網路霸凌通報與處理機制</li><li>增設旁觀者介入訓練課程</li></ul></div></div>' },
+      { rank: 5, title: "維護校園環境整潔，提供舒適的學習空間", shortTitle: "校園環境整潔", category: "校園環境", catClass: "cat-education", score: 4.25, excerpt: "研究顯示清潔環境可減少46%因病缺課。", pressDate: null, fullContent: '<div class="modal-section"><h4>關鍵數據</h4><div class="data-highlight"><div class="data-highlight-item"><div class="number">46%</div><div class="label">清潔環境可減少的因病缺課率</div></div></div></div><div class="modal-section"><h4>政策建議</h4><div class="demands-list"><h5>國教盟青年部主張</h5><ul><li>優化清掃制度，平衡教育意涵與學生負擔</li><li>改善清潔工具與衛生設備品質</li><li>將環境維護納入生活教育課程</li></ul></div></div>' },
+      { rank: 6, title: "加強對青少年心理健康的關注與支持", shortTitle: "青少年心理健康", category: "身心健康", catClass: "cat-health", score: 4.22, excerpt: "青少年自殺率10年翻倍，15-24歲自殺為第二大死因。近四成青少年遇心理困擾「不告訴任何人」。", pressDate: null, fullContent: '<div class="modal-section"><h4>關鍵數據</h4><div class="data-highlight"><div class="data-highlight-item"><div class="number">11.9</div><div class="label">15-24歲自殺率（每十萬人）</div></div><div class="data-highlight-item"><div class="number">+101%</div><div class="label">10年自殺率增幅</div></div></div></div><div class="modal-section"><h4>政策建議</h4><div class="demands-list"><h5>國教盟青年部主張</h5><ul><li>提升輔導人力至國際標準（師生比1:500）</li><li>推動心理健康教育入課綱</li><li>建立青少年友善單一求助入口</li></ul></div></div>' },
+      { rank: 7, title: "提升數位素養與媒體識讀能力，成為負責任的數位公民", shortTitle: "數位素養與媒體識讀", category: "數位素養", catClass: "cat-digital", score: 4.18, excerpt: "84.6%青少年每日使用社群媒體，13.6%已沉迷。58.4%每週使用生成式AI，但60%從未查證AI資訊。", pressDate: null, fullContent: '<div class="modal-section"><h4>關鍵數據</h4><div class="data-highlight"><div class="data-highlight-item"><div class="number">84.6%</div><div class="label">每日使用社群媒體</div></div><div class="data-highlight-item"><div class="number">60%</div><div class="label">從未查證AI資訊</div></div></div></div><div class="modal-section"><h4>政策建議</h4><div class="demands-list"><h5>國教盟青年部主張</h5><ul><li>將數位公民素養納入正式課程</li><li>新增AI素養教育模組</li><li>強化網路禮儀與數位足跡教育</li></ul></div></div>' },
+      { rank: 8, title: "促進青少年參與社會與政治事務的機會", shortTitle: "青少年社會參與", category: "公民參與", catClass: "cat-society", score: 4.15, excerpt: "2022年18歲公民權公投未通過，台灣仍為全球少數維持20歲投票年齡的民主國家。", pressDate: null, fullContent: '<div class="modal-section"><h4>關鍵數據</h4><div class="data-highlight"><div class="data-highlight-item"><div class="number">501萬</div><div class="label">公投同意票數</div></div><div class="data-highlight-item"><div class="number">20歲</div><div class="label">台灣投票年齡（全球少數）</div></div></div></div><div class="modal-section"><h4>政策建議</h4><div class="demands-list"><h5>國教盟青年部主張</h5><ul><li>落實學生自治，賦予實質參與權</li><li>擴大兒少代表、青年諮詢委員機制</li><li>推動審議式民主教育入課綱</li></ul></div></div>' },
+      { rank: 9, title: "增加對環境保護的教育與實際行動機會", shortTitle: "環境保護教育", category: "環境永續", catClass: "cat-education", score: 4.12, excerpt: "全球84%青年擔憂氣候變遷、37%感到焦慮。", pressDate: null, fullContent: '<div class="modal-section"><h4>關鍵數據</h4><div class="data-highlight"><div class="data-highlight-item"><div class="number">84%</div><div class="label">全球青年擔憂氣候變遷</div></div><div class="data-highlight-item"><div class="number">37%</div><div class="label">感到氣候焦慮</div></div></div></div><div class="modal-section"><h4>政策建議</h4><div class="demands-list"><h5>國教盟青年部主張</h5><ul><li>建立系統性氣候變遷教育課程</li><li>推動全國校園碳盤查與減碳行動</li><li>支持青年參與國際氣候會議</li></ul></div></div>' },
+      { rank: 10, title: "加強對青少年性健康的教育，包含避孕、性病防治等知識", shortTitle: "青少年性健康教育", category: "健康安全", catClass: "cat-health", score: 4.08, excerpt: "15-19歲女性梅毒感染10年暴增53倍，青少年淋病12年增7倍。", pressDate: null, fullContent: '<div class="modal-section"><h4>關鍵數據</h4><div class="data-highlight"><div class="data-highlight-item"><div class="number">53倍</div><div class="label">15-19歲女性梅毒10年增幅</div></div><div class="data-highlight-item"><div class="number">7倍</div><div class="label">青少年淋病12年增幅</div></div></div></div><div class="modal-section"><h4>政策建議</h4><div class="demands-list"><h5>國教盟青年部主張</h5><ul><li>增加性健康教育時數（國中每學期至少8節）</li><li>更新教材，納入完整避孕與性病防治知識</li><li>擴大HPV疫苗補助至男性青少年</li></ul></div></div>' }
     ];
     
-    // ===== 渲染卡片 =====
+    // Render Cards
     function renderCards() {
       var grid = document.getElementById('issuesGrid');
       var html = '';
-      
       for (var i = 0; i < issues.length; i++) {
         var issue = issues[i];
         html += '<div class="issue-card" onclick="openModal(' + i + ')">';
@@ -750,63 +1033,21 @@
         html += '<div class="issue-meta">';
         html += '<span class="issue-score">關注度 <span>' + issue.score.toFixed(2) + '</span></span>';
         html += '<span class="read-more">了解更多 →</span>';
-        html += '</div>';
-        html += '</div>';
+        html += '</div></div>';
       }
-      
       grid.innerHTML = html;
     }
     
-    // ===== Modal 功能 =====
+    // Modal
     function openModal(index) {
       var issue = issues[index];
-      var overlay = document.getElementById('modalOverlay');
-      
       document.getElementById('modalRank').textContent = '第 ' + issue.rank + ' 名';
       document.getElementById('modalTitle').textContent = issue.title;
       document.getElementById('modalCategory').textContent = issue.category;
       document.getElementById('modalCategory').className = 'issue-category ' + issue.catClass;
-      
-      var bodyHtml = '';
-      
-      // 關鍵數據
-      bodyHtml += '<div class="modal-section">';
-      bodyHtml += '<h4>關鍵數據</h4>';
-      bodyHtml += '<div class="data-highlight">';
-      bodyHtml += '<div class="number">' + issue.keyData + '</div>';
-      bodyHtml += '<div class="label">' + issue.keyDataLabel + '</div>';
-      bodyHtml += '</div>';
-      bodyHtml += '</div>';
-      
-      // 問題概述
-      bodyHtml += '<div class="modal-section">';
-      bodyHtml += '<h4>問題概述</h4>';
-      bodyHtml += '<p>' + issue.excerpt + '</p>';
-      bodyHtml += '</div>';
-      
-      // 政策訴求
-      bodyHtml += '<div class="modal-section">';
-      bodyHtml += '<h4>政策訴求</h4>';
-      bodyHtml += '<div class="demands-list">';
-      bodyHtml += '<h5>國教盟青年部主張</h5>';
-      bodyHtml += '<ul>';
-      for (var j = 0; j < issue.demands.length; j++) {
-        bodyHtml += '<li>' + issue.demands[j] + '</li>';
-      }
-      bodyHtml += '</ul>';
-      bodyHtml += '</div>';
-      bodyHtml += '</div>';
-      
-      // 記者會資訊
-      if (issue.pressDate) {
-        bodyHtml += '<div class="modal-section">';
-        bodyHtml += '<h4>相關倡議</h4>';
-        bodyHtml += '<p>📅 記者會日期：' + issue.pressDate + '</p>';
-        bodyHtml += '</div>';
-      }
-      
-      document.getElementById('modalBody').innerHTML = bodyHtml;
-      overlay.classList.add('active');
+      document.getElementById('modalBody').innerHTML = issue.fullContent;
+      document.getElementById('modalFooter').innerHTML = issue.pressDate ? '📅 記者會日期：<span>' + issue.pressDate + '</span>' : '尚未舉辦專題記者會';
+      document.getElementById('modalOverlay').classList.add('active');
       document.body.style.overflow = 'hidden';
     }
     
@@ -815,17 +1056,14 @@
       document.body.style.overflow = '';
     }
     
-    // 點擊背景關閉
     document.getElementById('modalOverlay').addEventListener('click', function(e) {
       if (e.target === this) closeModal();
     });
     
-    // ESC 關閉
     document.addEventListener('keydown', function(e) {
       if (e.key === 'Escape') closeModal();
     });
     
-    // 初始化
     renderCards();
   </script>
 </body>
