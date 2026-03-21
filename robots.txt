@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://kobee23752-dev.github.io/aabe-youth-survey/sitemap.xml
